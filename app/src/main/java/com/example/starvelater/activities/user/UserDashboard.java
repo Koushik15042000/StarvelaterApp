@@ -347,6 +347,7 @@ public class UserDashboard extends AppCompatActivity implements NavigationView.O
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("city",city);
         jsonObject.addProperty("area",area);
+        jsonObject.addProperty("type","Most Popular");
 
         ApiInterface apiInterface = RetrofitClient.getClient(this).create(ApiInterface.class);
 
@@ -387,8 +388,13 @@ public class UserDashboard extends AppCompatActivity implements NavigationView.O
 
 
                             allRestaurantsRecyclerView.setHasFixedSize(true);
-                            allRestaurantsRecyclerView.setLayoutManager(new LinearLayoutManager(UserDashboard.this, LinearLayoutManager.HORIZONTAL, false));
-                            adapter = new UserAllRestaurantsAdapter(UserDashboard.this, allRestList);
+                            allRestaurantsRecyclerView.setLayoutManager(new LinearLayoutManager(UserDashboard.this, LinearLayoutManager.HORIZONTAL, true));
+
+                            // NEED TO CHANGE THE ARRAY LIST TO allRestList
+                            adapter = new UserAllRestaurantsAdapter(UserDashboard.this, popularList);
+
+
+
                             allRestaurantsshimmerFrameLayout.stopShimmer();
                             allRestaurantsshimmerFrameLayout.setVisibility(View.GONE);
                             allRestaurantsRecyclerView.setVisibility(View.VISIBLE);

@@ -143,6 +143,13 @@ public class RestaurantProfileActivity extends AppCompatActivity implements Cart
 
         aSwitch = findViewById(R.id.toggleswitch);
 
+        aSwitch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
         Bundle bundle = getIntent().getExtras();
         assert bundle != null;
         String restaurantID = bundle.getString("rest_ID");
@@ -530,6 +537,7 @@ public class RestaurantProfileActivity extends AppCompatActivity implements Cart
             }
 
 
+
     }
 
 
@@ -558,3 +566,4 @@ public class RestaurantProfileActivity extends AppCompatActivity implements Cart
     }
 
 }
+

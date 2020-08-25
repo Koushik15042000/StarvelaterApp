@@ -11,7 +11,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
 
-    private static final String BASE_URL = "http://starvelater.net/partner/restapi/";
+    private static final String BASE_URL = "http://starvelater.ml/restapi/";
     private static Retrofit retrofit;
     public static Retrofit getClient(Context context) {
         if (retrofit == null) {
