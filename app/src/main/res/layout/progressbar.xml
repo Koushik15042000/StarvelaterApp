@@ -4,15 +4,15 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:background="@color/colorLightWhite"
+    android:background="@color/colorWhite"
     android:id="@+id/progressBar"
     android:layout_gravity="center">
 
     <ProgressBar
         style="?android:attr/progressBarStyleLarge"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_gravity="center_horizontal"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:indeterminateDrawable="@drawable/custom_progress_bar"/>
 
 </LinearLayout>

@@ -63,7 +63,7 @@ public class All_Restaurants extends AppCompatActivity {
 
         swipeRefreshLayout = findViewById(R.id.refreshLayout);
 
-        swipeRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.colorWhite));
+        swipeRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.colorPrimary));
 
         //progressBar = findViewById(R.id.progressBar);
 

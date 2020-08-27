@@ -19,11 +19,6 @@
         app:headerLayout="@layout/menu_header"
         app:menu="@menu/main_menu" />
 
-
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/refreshLayout">
     <LinearLayout
         android:id="@+id/content"
         android:layout_width="match_parent"
@@ -49,6 +44,7 @@
 
                 <TextView
                     android:id="@+id/location"
+                    android:visibility="visible"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
@@ -61,6 +57,25 @@
                     android:text="Jayendra Nagar, Kakinada"
                     android:textColor="#fff"
                     android:textSize="14dp" />
+
+                <TextView
+                    android:id="@+id/loading_anim"
+                    android:visibility="gone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_marginStart="20dp"
+                    android:drawableStart="@drawable/ic_baseline_location_on_24"
+                    android:drawablePadding="5dp"
+                    android:drawableTint="#fff"
+                    android:fontFamily="@font/muli"
+                    android:padding="10dp"
+                    android:text="Loading your desired Locations..."
+                    android:textColor="#fff"
+                    android:textSize="14dp" />
+
+
+
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
@@ -449,7 +464,6 @@
 
     </LinearLayout>
 
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <include
         layout="@layout/progressbar"

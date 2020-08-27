@@ -72,7 +72,7 @@ public class All_CorporateCafe extends AppCompatActivity {
 
         swipeRefreshLayout = findViewById(R.id.refreshLayout);
 
-        swipeRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.colorWhite));
+        swipeRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.colorPrimary));
 
         //progressBar = findViewById(R.id.progressBar);
         emptyView = findViewById(R.id.emptyView);

@@ -17,6 +17,8 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -63,7 +65,9 @@ public class UserDashboard extends AppCompatActivity implements NavigationView.O
     RecyclerView utilityRecycler;
     RecyclerView.Adapter adapter;
 
-    SwipeRefreshLayout swipeRefreshLayout;
+    TextView loading_anim;
+
+    //SwipeRefreshLayout swipeRefreshLayout;
 
     MyAppPrefsManager myAppPrefsManager;
 
@@ -95,6 +99,8 @@ public class UserDashboard extends AppCompatActivity implements NavigationView.O
     ImageView qr_icon;
     TextView txtViewAll;
 
+    Animation loadingAnimation;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -107,9 +113,26 @@ public class UserDashboard extends AppCompatActivity implements NavigationView.O
 
         txtLocation = findViewById(R.id.location);
 
-        swipeRefreshLayout = findViewById(R.id.refreshLayout);
+        setLocationLayout.setEnabled(false);
 
-        swipeRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.colorPrimary));
+        loading_anim = findViewById(R.id.loading_anim);
+
+
+
+        loadingAnimation = AnimationUtils.loadAnimation(UserDashboard.this,R.anim.blink_anim);
+
+        txtLocation.setVisibility(View.GONE);
+
+        // Starting Blink action
+        loading_anim.setVisibility(View.VISIBLE);
+        loading_anim.startAnimation(loadingAnimation);
+
+
+
+
+      //  swipeRefreshLayout = findViewById(R.id.refreshLayout);
+
+       // swipeRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.colorPrimary));
 
         progressBar = findViewById(R.id.progressBar);
         dialogProgressBar = findViewById(R.id.progressBar);
@@ -173,13 +196,13 @@ public class UserDashboard extends AppCompatActivity implements NavigationView.O
             }
         });
 
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+        /*swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 next();
             }
         });
-
+*/
 
         next();
 
@@ -214,16 +237,21 @@ public class UserDashboard extends AppCompatActivity implements NavigationView.O
                     if(locationsModel.isStatus()){
                         locationList = locationsModel.getData();
                         dialogProgressBar.setVisibility(View.GONE);
+
+                        setLocationLayout.setEnabled(true);
+                        loading_anim.setVisibility(View.GONE);
+                        loading_anim.clearAnimation();
+                        txtLocation.setVisibility(View.VISIBLE);
                     }else{
                         dialogProgressBar.setVisibility(View.GONE);
                         Toast.makeText(UserDashboard.this, "No Locations Found", Toast.LENGTH_SHORT).show();
                     }
 
-                    swipeRefreshLayout.setRefreshing(false);
+                  //  swipeRefreshLayout.setRefreshing(false);
                 }else{
                     dialogProgressBar.setVisibility(View.GONE);
                     Toast.makeText(UserDashboard.this, "Something Went Wrong !", Toast.LENGTH_SHORT).show();
-                    swipeRefreshLayout.setRefreshing(false);
+                   // swipeRefreshLayout.setRefreshing(false);
                 }
             }
 
@@ -231,7 +259,7 @@ public class UserDashboard extends AppCompatActivity implements NavigationView.O
             public void onFailure(Call<LocationsModel> call, Throwable t) {
                 dialogProgressBar.setVisibility(View.GONE);
                 Toast.makeText(UserDashboard.this, "Please Try Again!", Toast.LENGTH_SHORT).show();
-                swipeRefreshLayout.setRefreshing(false);
+              //  swipeRefreshLayout.setRefreshing(false);
 
             }
         });
@@ -317,7 +345,7 @@ public class UserDashboard extends AppCompatActivity implements NavigationView.O
                       allRestaurantsshimmerFrameLayout.startShimmer();
                       allRestaurantsRecycler(cityName, areaName);
 
-                      Toast.makeText(UserDashboard.this, "Changed Location Successfully !", Toast.LENGTH_SHORT).show();
+                      //Toast.makeText(UserDashboard.this, "Changed Location Successfully !", Toast.LENGTH_SHORT).show();
                       setLocationDialog.dismiss();
                   }
               }
@@ -347,7 +375,6 @@ public class UserDashboard extends AppCompatActivity implements NavigationView.O
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("city",city);
         jsonObject.addProperty("area",area);
-        jsonObject.addProperty("type","Most Popular");
 
         ApiInterface apiInterface = RetrofitClient.getClient(this).create(ApiInterface.class);
 
@@ -388,10 +415,10 @@ public class UserDashboard extends AppCompatActivity implements NavigationView.O
 
 
                             allRestaurantsRecyclerView.setHasFixedSize(true);
-                            allRestaurantsRecyclerView.setLayoutManager(new LinearLayoutManager(UserDashboard.this, LinearLayoutManager.HORIZONTAL, true));
+                            allRestaurantsRecyclerView.setLayoutManager(new LinearLayoutManager(UserDashboard.this, LinearLayoutManager.HORIZONTAL, false));
 
                             // NEED TO CHANGE THE ARRAY LIST TO allRestList
-                            adapter = new UserAllRestaurantsAdapter(UserDashboard.this, popularList);
+                            adapter = new UserAllRestaurantsAdapter(UserDashboard.this, allRestList);
 
 
 

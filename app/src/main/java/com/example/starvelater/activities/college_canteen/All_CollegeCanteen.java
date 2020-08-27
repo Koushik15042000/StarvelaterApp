@@ -64,7 +64,7 @@ public class All_CollegeCanteen extends AppCompatActivity {
 
         swipeRefreshLayout = findViewById(R.id.refreshLayout);
 
-        swipeRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.colorWhite));
+        swipeRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.colorPrimary));
 
 
         /* Need to change after Accessing Data Dynamically from Server */
