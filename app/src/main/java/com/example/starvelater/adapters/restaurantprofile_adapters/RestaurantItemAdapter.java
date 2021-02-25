@@ -24,6 +24,7 @@ public class RestaurantItemAdapter extends RecyclerView.Adapter<RestaurantItemAd
     /*private List<Product> itemsModelList;*/
     private CartItemClickListener cartItemClickListener;
     private List<String> categoryNamesList;
+
     private List<Product> categoryItemsList;
     private String operationStatus;
     LayoutInflater inflater;

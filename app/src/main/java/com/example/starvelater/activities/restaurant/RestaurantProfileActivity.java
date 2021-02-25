@@ -231,6 +231,7 @@ public class RestaurantProfileActivity extends AppCompatActivity implements Cart
             @Override
             public void onResponse(Call<CategoryItemsModel> call, Response<CategoryItemsModel> response) {
                 if(response.isSuccessful()) {
+
                     CategoryItemsModel categoryItemsModel = response.body();
                     assert categoryItemsModel!=null;
 

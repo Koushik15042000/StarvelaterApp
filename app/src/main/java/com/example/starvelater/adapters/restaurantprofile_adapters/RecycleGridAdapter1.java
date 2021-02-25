@@ -39,8 +39,6 @@ public class RecycleGridAdapter1 extends RecyclerView.Adapter<RecycleGridAdapter
         this.operationStatus = operationStatus;
     }
 
-
-
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {

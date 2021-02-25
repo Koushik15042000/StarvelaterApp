@@ -8,6 +8,7 @@ public class Product implements Serializable {
     private int unitPrice;
     private int itemTotalPrice;
     private int quantity;
+
     private String type;
     private String titles;
 
